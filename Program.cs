@@ -13,12 +13,18 @@ namespace cours
         public int x;//координата абсцисс для центра
         public int y;//координата ординат для центра
         public int r;//радиус окружности
+        public int z;
+        public int v;
+        public string c;
        
     }
+
+    
     #region DataProvider
     class DataProvider
     {
         StreamReader mReader;
+      
 
         public DataProvider(string file)
         {
@@ -27,12 +33,17 @@ namespace cours
 
         public int rdInt()
         {
-            return Convert.ToInt32(mReader.ReadLine());
+            return Convert.ToInt32(mReader.ReadLine());  
         }
 
         public double rdDouble()
         {
             return Convert.ToDouble(mReader.ReadLine());
+        }
+
+        public string rString()
+        {
+            return Convert.ToString(mReader.ReadLine());
         }
     }
     #endregion
@@ -41,7 +52,7 @@ namespace cours
         static void Main(string[] args)
         {
             try
-            {
+            {   
                 DataProvider filer = new DataProvider(@"E:\data.txt");
                 ShapesDemo iData = new ShapesDemo();//экземпляр класса для треугольника
                 ShapesDemo i1Data = new ShapesDemo();//экземлпяр класса для квадрата
@@ -58,6 +69,18 @@ namespace cours
                 Console.WriteLine("Координата центра окружности оси X: " + i2Data.x);
                 Console.WriteLine("Координата центра окружности оси Y: " + i2Data.y);
                 Console.WriteLine("Радиус окружности: " + i2Data.r);
+                Console.WriteLine("Считать новую информацию с файла ?");
+                string val = Console.ReadLine();
+                if ((val == "da")&&(val=="да"))
+                {
+                    ShapesDemo i3Data = new ShapesDemo();//экземпляр для новой фигуры
+                    i3Data.z = filer.rdInt();
+                    i3Data.v = filer.rdInt();
+                    i3Data.c = filer.rString();
+                    Console.WriteLine("Параметр новой фигуры"  + " " + i3Data.z);
+                    Console.WriteLine("Параметр новой фигуры" + " " + i3Data.v);
+                    Console.WriteLine("Параметр новой фигуры" + " " + i3Data.c);
+                }
               
             }
             catch (Exception ex)
